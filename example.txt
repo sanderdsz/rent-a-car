@@ -1,0 +1,3 @@
+SUV, Utilitário esportivo
+Sedan, Tres volumes
+Hatch, Curto
