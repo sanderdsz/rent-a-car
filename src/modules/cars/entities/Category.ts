@@ -21,8 +21,10 @@ class Category {
   @CreateDateColumn()
   created_at?: Date;
 
+  /*
   @UpdateDateColumn({ nullable: true })
   updated_at?: Date;
+  */
 
   constructor() {
     if (!this.id) {

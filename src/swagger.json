@@ -92,6 +92,100 @@
           }
         }
       }
+    },
+    "/categories/import": {
+      "post": {
+        "tags": ["Category"],
+        "summary": "Import categories",
+        "description": "Import categories",
+        "operationId": "importCategories",
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Categories imported"
+          }
+        }
+      }
+    },
+    "/specifications": {
+      "post": {
+        "tags": ["Specification"],
+        "summary": "Create a new specification",
+        "description": "Create a new specification",
+        "operationId": "createSpecification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Specification"
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Specification created"
+            },
+            "500": {
+              "description": "Specification already exists"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Specification"],
+        "summary": "Get all specifications",
+        "description": "Get all specifications",
+        "operationId": "getSpecifications",
+        "responses": {
+          "200": {
+            "description": "Specifications found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "Economy"
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Economy Car"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Specification": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Doors"
+        },
+        "description": {
+          "type": "string",
+          "example": "Number of doors"
+        }
+      }
     }
   }
 }
