@@ -26,16 +26,9 @@ class Specification {
   updated_at?: Date;
   */
 
-  constructor(name: string, description: string) {
+  constructor() {
     if (!this.id) {
       this.id = uuidv4();
-    }
-    this.name = name;
-    this.description = description;
-    if (!this.created_at) {
-      this.created_at = new Date();
-    } else {
-      this.updated_at = new Date();
     }
   }
 }
