@@ -22,37 +22,25 @@ export async function ensureAuthenticated(
   const [, token] = authHeader.split(" ");
 
   try {
-    const { sub } = verify(
+    const { sub: user_id } = verify(
       token,
       "5ebe2294ecd0e0f08eab7690d2a6ee69"
     ) as ITokenPayload;
 
     const usersRepository = new UserRepository();
 
-    const user = await usersRepository.findById(sub);
+    const user = await usersRepository.findById(user_id);
 
     if (!user) {
       throw new AppError("User not found.", 401);
     }
 
+    request.user = {
+      id: user_id,
+    };
+
     next();
   } catch (err) {
     throw new AppError("Invalid JWT token.", 401);
   }
-
-  /*
-  try {
-    const decoded = await promisify(jwt.verify)(token, authConfig.secret);
-
-    const { sub } = decoded as ITokenPayload;
-
-    request.user = {
-      id: sub,
-    };
-
-    return next();
-  } catch (err) {
-    throw new Error("Invalid JWT token.");
-  }
-  */
 }
