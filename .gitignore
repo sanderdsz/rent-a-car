@@ -132,3 +132,7 @@ dist
 .tmp/*
 .tmp.*
 .vscode.*
+.coverage
+coverage
+temp
+tmp
